@@ -13,6 +13,12 @@ module LedBlinker {
   topology LedBlinker {
 
     # ----------------------------------------------------------------------
+    # Subtopology imports 
+    # ----------------------------------------------------------------------
+    import EventLoggerTee.Subtopology
+    import TlmLoggerTee.Subtopology
+
+    # ----------------------------------------------------------------------
     # Instances used in the topology
     # ----------------------------------------------------------------------
 
@@ -69,9 +75,12 @@ module LedBlinker {
     # ----------------------------------------------------------------------
 
     connections Downlink {
-      # Inputs to ComQueue (events, telemetry, file)
-      eventLogger.PktSend         -> comQueue.comPacketQueueIn[0]
-      tlmSend.PktSend             -> comQueue.comPacketQueueIn[1]
+      # Inputs to ComQueue (using LoggerTees to log events and telemetry)
+      eventLogger.PktSend         -> EventLoggerTee.comSplitter.comIn
+      EventLoggerTee.comSplitter.comOut -> comQueue.comPacketQueueIn[0]
+      tlmSend.PktSend             -> TlmLoggerTee.comSplitter.comIn
+      TlmLoggerTee.comSplitter.comOut -> comQueue.comPacketQueueIn[1]
+
       fileDownlink.bufferSendOut  -> comQueue.bufferQueueIn[0]
       comQueue.bufferReturnOut[0] -> fileDownlink.bufferReturn
       # ComQueue <-> Framer

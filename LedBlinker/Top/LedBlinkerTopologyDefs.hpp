@@ -11,6 +11,10 @@
 #include "Svc/FramingProtocol/FprimeProtocol.hpp"
 #include "Svc/Health/Health.hpp"
 
+// Subtopology PingEnties Includes
+#include "EventLoggerTee/PingEntries.hpp"
+#include "TlmLoggerTee/PingEntries.hpp"
+
 // Definitions are placed within a namespace named after the deployment
 namespace LedBlinker {
 

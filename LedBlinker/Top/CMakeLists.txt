@@ -19,3 +19,5 @@ set(MOD_DEPS
 )
 
 register_fprime_module()
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/EventLoggerTee/")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/TlmLoggerTee/")
