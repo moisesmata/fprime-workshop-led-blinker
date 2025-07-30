@@ -162,6 +162,10 @@ void setupTopology(const TopologyState& state) {
         // Uplink is configured for receive so a socket task is started
         comDriver.start(name, COMM_PRIORITY, Default::STACK_SIZE);
     }
+
+    //Configure Comloggers
+    EventLoggerTee::comLog.init_log_file("ComLoggerFiles/Events", 1024 * 1024, true);
+    TlmLoggerTee::comLog.init_log_file("ComLoggerFiles/Tlm", 1024 * 1024, true);
 }
 
 // Variables used for cycle simulation
