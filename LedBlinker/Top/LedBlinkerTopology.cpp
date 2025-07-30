@@ -164,8 +164,8 @@ void setupTopology(const TopologyState& state) {
     }
 
     //Configure Comloggers
-    EventLoggerTee::comLog.init_log_file("/opt/ledblinker-soak/ComLoggerFiles/Events", 1024 * 1024, true);
-    TlmLoggerTee::comLog.init_log_file("/opt/ledblinker-soak/ComLoggerFiles/Tlm", 1024 * 1024, true);
+    EventLoggerTee::comLog.init_log_file("ComLoggerFiles/Events", 1024 * 1024, true);
+    TlmLoggerTee::comLog.init_log_file("ComLoggerFiles/Tlm", 1024 * 1024, true);
 }
 
 // Variables used for cycle simulation
