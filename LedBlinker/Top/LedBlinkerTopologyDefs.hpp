@@ -87,5 +87,8 @@ namespace LedBlinker_rateGroup3 {
 enum { WARN = 3, FATAL = 5 };
 }
 }  // namespace PingEntries
+
+namespace PingEntries = ::PingEntries;
+
 }  // namespace LedBlinker
 #endif
