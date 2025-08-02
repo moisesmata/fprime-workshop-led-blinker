@@ -59,6 +59,23 @@ class Led : public LedComponentBase {
                                    Fw::On onOff          //!< Indicates whether the blinking should be on or off
                                    ) override;
 
+        //! Handler implementation for command EMIT_WARNING
+        //!
+        //! Command to emit a warning event
+        void
+        EMIT_WARNING_cmdHandler(FwOpcodeType opCode,  //!< The opcode
+                                U32 cmdSeq            //!< The command sequence number
+                                   ) override;
+
+        //! Handler implementation for command EMIT_FATAL
+        //!
+        //! Command to emit a fatal event
+        void
+        EMIT_FATAL_cmdHandler(FwOpcodeType opCode,  //!< The opcode
+                                U32 cmdSeq            //!< The command sequence number
+                                   ) override;
+
+
     Fw::On m_state = Fw::On::OFF;  //! Keeps track if LED is on or off
     U64 m_transitions = 0;         //! The number of on/off transitions that have occurred
                                    //! from FSW boot up

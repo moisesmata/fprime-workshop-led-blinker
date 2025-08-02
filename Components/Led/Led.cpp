@@ -96,4 +96,20 @@ void Led ::BLINKING_ON_OFF_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, Fw::On on
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
 
+void Led ::EMIT_WARNING_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+
+    this->log_WARNING_HI_ForceWarning();
+
+    // Provide command response
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+}
+
+void Led ::EMIT_FATAL_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+
+    this->log_FATAL_ForceFatal();
+
+    // Provide command response
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+}
+
 }  // namespace Components

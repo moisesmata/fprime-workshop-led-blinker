@@ -7,6 +7,12 @@ module Components {
                 onOff: Fw.On @< Indicates whether the blinking should be on or off
         )
 
+        async command EMIT_WARNING(
+        )
+
+        async command EMIT_FATAL(
+        )
+
         @ Telemetry channel to report blinking state.
         telemetry BlinkingState: Fw.On
 
@@ -17,6 +23,14 @@ module Components {
         event SetBlinkingState($state: Fw.On) \
             severity activity high \
             format "Set blinking state to {}."
+
+        event ForceWarning() \
+            severity warning high \
+            format "This is a warning high" 
+
+        event ForceFatal() \
+            severity fatal \
+            format "HES DEAD JIM...." 
 
         @ Event logged when the LED turns on or off
         event LedState(onOff: Fw.On) \
