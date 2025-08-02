@@ -114,7 +114,7 @@ void configureTopology() {
     prmDb.readParamFile();
 
     // Health is supplied a set of ping entires.
-    health.setPingEntries(pingEntries, FW_NUM_ARRAY_ELEMENTS(pingEntries), HEALTH_WATCHDOG_CODE)
+    health.setPingEntries(pingEntries, FW_NUM_ARRAY_ELEMENTS(pingEntries), HEALTH_WATCHDOG_CODE);
 
     // Note: Uncomment when using Svc:TlmPacketizer
     // tlmSend.setPacketList(LedBlinkerPacketsPkts, LedBlinkerPacketsIgnore, 1);
