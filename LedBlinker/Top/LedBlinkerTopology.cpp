@@ -114,7 +114,7 @@ void configureTopology() {
     prmDb.readParamFile();
 
     // Health is supplied a set of ping entires.
-    health.setPingEntries(pingEntries, FW_NUM_ARRAY_ELEMENTS(pingEntries), HEALTH_WATCHDOG_CODE);
+    health.setPingEntries(pingEntries, FW_NUM_ARRAY_ELEMENTS(pingEntries), HEALTH_WATCHDOG_CODE)
 
     // Note: Uncomment when using Svc:TlmPacketizer
     // tlmSend.setPacketList(LedBlinkerPacketsPkts, LedBlinkerPacketsIgnore, 1);
@@ -148,6 +148,9 @@ void setupTopology(const TopologyState& state) {
     if (state.hostname != nullptr && state.port != 0) {
         comDriver.configure(state.hostname, state.port);
     }
+    //Configure Comloggers
+    EventLoggerTee::comLog.init_log_file("/opt/ledblinker-soak/ComLoggerFiles/Events", 1024 * 1024, true);
+    TlmLoggerTee::comLog.init_log_file("/opt/ledblinker-soak/ComLoggerFiles/Tlm", 1024 * 1024, true);
     // Deployment-specific component configuration. Function provided above. May be inlined, if desired.
     configureTopology();
     // Autocoded command registration. Function provided by autocoder.
@@ -163,9 +166,6 @@ void setupTopology(const TopologyState& state) {
         comDriver.start(name, COMM_PRIORITY, Default::STACK_SIZE);
     }
 
-    //Configure Comloggers
-    EventLoggerTee::comLog.init_log_file("/opt/ledblinker-soak/ComLoggerFiles/Events", 1024 * 1024, true);
-    TlmLoggerTee::comLog.init_log_file("/opt/ledblinker-soak/ComLoggerFiles/Tlm", 1024 * 1024, true);
 }
 
 // Variables used for cycle simulation
