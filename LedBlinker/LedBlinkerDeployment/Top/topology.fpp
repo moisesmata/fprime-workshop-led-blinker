@@ -34,6 +34,10 @@ module LedBlinker {
     instance cmdSeq
     instance led
     instance gpioDriver
+    instance comSplitter1
+    instance comSplitter2
+    instance comLogger1
+    instance comLogger2
 
   # ----------------------------------------------------------------------
   # Pattern graph specifiers
@@ -59,8 +63,13 @@ module LedBlinker {
 
     connections ComCcsds_CdhCore {
       # Core events and telemetry to communication queue
-      CdhCore.events.PktSend -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.EVENTS]
-      CdhCore.tlmSend.PktSend -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.TELEMETRY]
+      CdhCore.events.PktSend -> comSplitter1.comIn
+      comSplitter1.comOut -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.EVENTS]
+      comSplitter1.comOut -> comLogger1.comIn
+
+      CdhCore.tlmSend.PktSend -> comSplitter2.comIn
+      comSplitter2.comOut -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.TELEMETRY]
+      comSplitter2.comOut -> comLogger2.comIn
 
       # Router to Command Dispatcher
       ComCcsds.fprimeRouter.commandOut -> CdhCore.cmdDisp.seqCmdBuff

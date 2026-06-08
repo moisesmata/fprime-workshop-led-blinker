@@ -51,6 +51,16 @@ module LedBlinker {
     stack size Default.STACK_SIZE \
     priority 95
 
+  instance comLogger1: Svc.ComLogger base id 0x10006000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 116
+
+  instance comLogger2: Svc.ComLogger base id 0x10007000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 115 
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
@@ -71,5 +81,9 @@ module LedBlinker {
   instance comDriver: Drv.TcpServer base id 0x10014000
 
   instance gpioDriver: Drv.LinuxGpioDriver base id 0x10015000
+
+  instance comSplitter1: Svc.ComSplitter base id 0x10016000
+
+  instance comSplitter2: Svc.ComSplitter base id 0x10017000
 
 }

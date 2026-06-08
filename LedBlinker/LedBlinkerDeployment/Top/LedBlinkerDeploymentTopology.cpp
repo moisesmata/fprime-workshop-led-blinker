@@ -81,6 +81,11 @@ void setupTopology(const TopologyState& state) {
     loadParameters();
     // Autocoded task kick-off (active components). Function provided by autocoder.
     startTasks(state);
+
+    //Configure Comloggers
+    comLogger1.init_log_file("ComLoggerFiles/Events", 1024 * 1024, true);
+    comLogger2.init_log_file("ComLoggerFiles/Tlm", 1024 * 1024, true);
+
     // Initialize socket communication if and only if there is a valid specification
     if (state.hostname != nullptr && state.port != 0) {
         Os::TaskString name("ReceiveTask");

@@ -49,6 +49,8 @@ namespace PingEntries {
     namespace LedBlinker_rateGroup2 {enum { WARN = 3, FATAL = 5 };}
     namespace LedBlinker_rateGroup3 {enum { WARN = 3, FATAL = 5 };}
     namespace LedBlinker_cmdSeq {enum { WARN = 3, FATAL = 5 };}
+    namespace LedBlinker_comLogger1 {enum { WARN = 3, FATAL = 5 };}
+    namespace LedBlinker_comLogger2 {enum { WARN = 3, FATAL = 5 };}
 }  // namespace PingEntries
 
 // Definitions are placed within the same namespace (FPP module name)
